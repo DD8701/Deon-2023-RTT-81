@@ -1,3 +1,5 @@
+package thirdProject;
+
 public class AreaOfCircle {
 
 	/**Main method */
