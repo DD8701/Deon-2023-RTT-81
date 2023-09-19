@@ -3,6 +3,9 @@ package variables;
 public class EscapeCharacters {
 
 	public static void main(String[] args) {
+	
+			// the main ones to know are ... \t, \n, and \"
+		
 		
 		// this is an example of the tab escape character \t
 		System.out.println("This is a tab character ->\t<-");
@@ -21,6 +24,10 @@ public class EscapeCharacters {
 		
 		// what happens if I want to print just a \ (back slash)
 		System.out.println("To get a back slash to print we need 2 of them \\");
+		
+		// what happens if I want a " in my string
+		System.out.println("This is a quote \" in a string");
+		
 	}
 
 }
