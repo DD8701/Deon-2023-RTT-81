@@ -14,10 +14,10 @@ public class Eight {
 		double subTotal = 0;
 		
 		// 3 items of the first product
-		subTotal = coffee * 3;
+		subTotal = coffee * 1;
 		
 		// 4 items of the 2nd product
-		subTotal = subTotal + (tea *4);
+		subTotal = subTotal + (tea *0);
 		
 		// 2 items of the 3rd product
 		subTotal = subTotal + (cookie *2);
@@ -26,6 +26,12 @@ public class Eight {
 		
 		DecimalFormat df = new DecimalFormat ("#,###.00");
 		System.out.println("Subtotal : " +  df.format(subTotal)); // can use a decimal formatter to shorten the result
+
+		double salesTax = subTotal * 0.0825;
+		System.out.println("Sales Tax : " + df.format(salesTax));
+		
+		double totalSale = subTotal + salesTax;
+		System.out.println("Total : " + df.format(totalSale));
 
 	}
 
