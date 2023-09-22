@@ -1,6 +1,6 @@
 package conditionalStatements;
 
-public class ConditionalStatementPractice {
+public class ConditionalStatementPractice1 {
 
 	public static void main(String[] args) {
 		// Write a program that declares and integer value x and then assigns a number to it.
