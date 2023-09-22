@@ -4,8 +4,9 @@ public class EscapeCharacters {
 
 	public static void main(String[] args) {
 	
-			// the main ones to know are ... \t, \n, and \"
+		// the main ones to know are ... \t, \n, and \"
 		
+		// for the Java language \ (slash) is the escape character
 		
 		// this is an example of the tab escape character \t
 		System.out.println("This is a tab character ->\t<-");
