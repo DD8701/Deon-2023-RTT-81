@@ -15,7 +15,8 @@ public class JavaStringsIntroduction {
 		}
 		String str1upper = str1.toUpperCase();
 		String str2upper = str2.toUpperCase();
-		System.out.println(str1upper);
-		System.out.println(str2upper);
+		System.out.println(str1upper +" " +  str2upper);
+		
 	}
+		
 }
