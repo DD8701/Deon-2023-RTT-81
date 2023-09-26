@@ -26,5 +26,4 @@ public class PyramidExample {
 			System.out.println();// new line
 		}
 	}
-
 }
