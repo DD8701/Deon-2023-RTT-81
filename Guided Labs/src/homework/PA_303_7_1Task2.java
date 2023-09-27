@@ -13,7 +13,7 @@ public class PA_303_7_1Task2 {
 		
 	int [] array = {13,5,7,68,2}; //syntax for arrays
 
-	int high = array.length -1; // low is always 0 so don'need low
+	int high = array.length -1; // low is always 0 so don't need low
 			
 	int mid = (high/2); // high would be divided by two
 	System.out.println("Mid Value is " + array[mid]); //array[mid] because mid represents a string in an array
