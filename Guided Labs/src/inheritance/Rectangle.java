@@ -4,6 +4,7 @@ public class Rectangle extends Shape {
 
 	private double height;
 	private double width;
+	private double length;
 
 	public Rectangle() {
 		super();
@@ -31,5 +32,13 @@ public class Rectangle extends Shape {
 	public void setWidth(double width) {
 		this.width = width;
 	}
-
+	public double getLength() {
+		return length;
+	}
+	public void setLength(double length) {
+		this.length = length;
+	}
+public double calculatePerimter() {
+	return 2 * getLength() + getWidth();
+}
 }
