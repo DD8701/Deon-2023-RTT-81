@@ -13,7 +13,7 @@ public class ConditionalOperators {
 			System.out.println("Both varibles are the same");
 		}
 		
-		// ! = two primities are equal
+		// ! = two primitives are equal
 		if ( conditionOne != conditionTwo) {
 		}
 		

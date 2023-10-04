@@ -13,7 +13,7 @@ public class First {
 		sum = a + b;
 		
 		// assigns the sum to a variable
-	System.out.println(sum);
+	System.out.println (sum);
 
 	}
 

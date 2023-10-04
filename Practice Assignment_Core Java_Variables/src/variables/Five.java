@@ -17,10 +17,9 @@ public class Five {
 		
 		// cast the result to an integer ???
 		System.out.println((int)z); // don't forget the extra set of parenthesis to complete the argument
-	
+	   // could also do: int q = (int)z instead of the System.out.println((int)z)
 	
 		
-
 	}
 
 

@@ -3,10 +3,10 @@ package homework;
 import java.util.Scanner;
 
 public class Calulator2 {
-
+	// when something is static, there can only be one of them. i.e. class, variable, etc.
 	public static void main(String[] args) {
 
-		Scanner input = new Scanner(System.in); // Create a scanner obj to accept input from console
+		
 		Scanner number = new Scanner(System.in);// Create scanner obj to accept first&second number choices
 //------------------------------------------------------------------------------------------------------------------------------
 		// I want to check if the choice is between 1-4
@@ -14,13 +14,11 @@ public class Calulator2 {
 		// if not between 1-4, print invalid and display menu again.
 		int choice;
 		do { // do the following (in-between {}) once unconditionally.
-			System.out.println("Which operation do you want to perfom?: "); // prints "Menu" or options
-			System.out.println("1. Add");
-			System.out.println("2. Subtract");
-			System.out.println("3. Multiply");
-			System.out.println("4. Divide");
+			//System.out.println("Which operation do you want to perfom?: "); // prints "Menu" or options
+			System.out.println("Which operation do you want to perfom?: \n1. Add\n2. Subtract\n3. Multiply\n4. Divide"); // prints "Menu" or options
 
-			choice = input.nextInt(); // takes input and stores for now
+
+			choice = number.nextInt(); // takes input and stores for now
 			if (choice > 4 || choice < 1) { // check if invalid
 				System.out.println("Input invalid. Please try again.");
 			}
@@ -49,3 +47,7 @@ public class Calulator2 {
 	}
 	
 }
+// add method
+// divide method
+// multiply method
+// subtract method

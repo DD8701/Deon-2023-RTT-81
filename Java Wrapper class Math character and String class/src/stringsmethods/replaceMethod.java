@@ -10,11 +10,14 @@ public class replaceMethod {
 		// stringobj.replace(CharSequence oldText, CharSequence newText)
 
 		String str1 = "abc cba";
-
+		
+		String str2 = str1.replace( 'a', 'z' );
+		String upper = str1.toUpperCase();
+		
 		// all occurrences of 'a' is replaced with 'z'
-		System.out.println(str1.replace('a', 'z'));
+		System.out.println(str2);
 
-		// all occurences of 'L' is replaced with 'J'
+		// all occurrences of 'L' is replaced with 'J'
 		System.out.println("Lava".replace('L', 'J'));
 		
 		// character not in the string
@@ -23,7 +26,7 @@ public class replaceMethod {
 		// all occurrences of "C++" is replaced with "Java"
 		System.out.println(str1.replace("C++", "Java")); //Note: If the substring to be replaced is not in the string,...
 		//... replace() returns the original string.
-		// all occurences of "aa" is replaced with "zz"
+		// all occurrences of "aa" is replaced with "zz"
 		System.out.println("aa bb aa zz".replace("aa", "zz"));
 
 		// substring not in the string

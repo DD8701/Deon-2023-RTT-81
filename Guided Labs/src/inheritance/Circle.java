@@ -21,7 +21,10 @@ public class Circle extends Shape {
 
 	@Override
 	public double calculateArea() {
-		return 3.14159 * getDiameter() * getDiameter();
+		return 3.14159 * getRadius() * getRadius();
+	
 	}
-
+	public double calculatePerimeter() {
+		return 2 * 3.14159 * getRadius();
+	}
 }

@@ -4,7 +4,7 @@ public class NestedChained {
 
 	public static void main(String[] args) {
 		//
-		int score = 70;
+		int score = 50;
 		if (score >= 90.0) {
 			System.out.print("A");
 		} else if (score >= 80.0) {

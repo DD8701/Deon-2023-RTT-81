@@ -18,5 +18,7 @@ public class PA_303_7_1Task2 {
 	int mid = (high/2); // high would be divided by two
 	System.out.println("Mid Value is " + array[mid]); //array[mid] because mid represents a string in an array
 	
+	// Alternative method
+	System.out.println(array[array.length / 2]);
 }
 }

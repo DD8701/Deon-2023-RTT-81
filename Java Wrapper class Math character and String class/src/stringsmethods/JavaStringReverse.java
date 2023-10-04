@@ -12,7 +12,7 @@ public class JavaStringReverse {
 
 		if (str.equals(result)) {
 			System.out.println("Yes");
-		} else { // (!str.equals(result)) 
+		} else if (!str.equals(result)) { // or can be written as " else " which will return the negation of the if statement
 			System.out.println("No");
 		}
 	}
