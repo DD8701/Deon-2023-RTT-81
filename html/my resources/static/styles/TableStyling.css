@@ -1,0 +1,28 @@
+@charset "UTF-8";
+td, th {
+    border: 1px solid red;
+}
+
+body {
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+table {
+   width: 200px;
+   height: 300px;
+   text-align: center;
+   border: 5px solid green;
+}
+
+th, td {
+   border: 1px solid red;
+}
+
+td:hover {
+   background-color: lightcoral;
+   color: white;
+}
