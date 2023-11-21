@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <div>The elements of the returned NodeList are in document order, so you can select the first "li" element of a document like this: "document.getElementsByTagName("li")[0]".</div>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <script>
+      let li = document.getElementsByTagName('li');
+      for (const liKey in li) {
+        console.log(li[liKey])
+      }
+    </script>
+  </body>
+</html>

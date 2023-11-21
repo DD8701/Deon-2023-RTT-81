@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body style="background-color: rgb(255, 241, 94); text-align: center;">
+
+   <header>
+        <h1>Your Cart</h1>
+    </header>
+
+    <main>
+        <p>Items in your cart:</p>
+
+        <ul id="cartList"></ul>
+
+        <div id="totalPrice">Total Price: $<span id="totalAmount">0.00</span></div>
+
+        <a href="../pages/SBA.html">Go back to Destination Selection Page</a>
+    </main>
+
+    <footer style="background-color: #333; color: white; padding: 10px;">
+        <p>2023 Family Event Planner</p>
+    </footer>
+
+     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            displayCartItems();
+        });
+
+        function displayCartItems() {
+            let legolandRow = document.getElementById('legolandRow');
+            let kalahariRow = document.getElementById('kalahariRow');
+            let austinsRow = document.getElementById('austinsRow');
+            let totalAmountElement = document.getElementById('totalAmount');
+
+            // Retrieve cart items from local storage
+            let cartItemsString = localStorage.getItem('cartItems');
+
+            if (cartItemsString) {
+                let cartItems = cartItemsString.split(';');
+                let totalPrice = 0;
+
+                cartItems.forEach(item => {
+                    let [destination, quantity, price] = item.split(',');
+
+                    let row = document.getElementById(`${destination.toLowerCase()}Row`);
+                    row.innerHTML = `
+                        <td>${destination}</td>
+                        <td>${quantity}</td>
+                        <td>$${parseFloat(price).toFixed(2)}</td>
+                    `;
+
+                    totalPrice += parseFloat(price);
+                });
+
+                // Display the total price
+                totalAmountElement.textContent = totalPrice.toFixed(2);
+            } else {
+                // No items in the cart
+                totalAmountElement.textContent = "0.00";
+            }
+        }
+    </script>
+</body>
+</html>

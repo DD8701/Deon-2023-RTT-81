@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Windows</title>
+</head>
+<body>
+
+<script>
+    // Function to create a chat window
+    function createChatWindow() {
+        // Create chat window container
+        const chatWindow = document.createElement('div');
+        chatWindow.style.border = '1px solid #ccc';
+        chatWindow.style.padding = '10px';
+        chatWindow.style.margin = '10px';
+
+        // Create recent messages area
+        const recentMessages = document.createElement('div');
+        recentMessages.className = 'recent-messages'; // Added class for easier selection
+        recentMessages.style.height = '100px';
+        recentMessages.style.overflow = 'auto';
+        chatWindow.appendChild(recentMessages);
+
+        // Create input for name
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.placeholder = 'Enter your name';
+        nameInput.style.marginBottom = '5px'; // Style using style property
+        chatWindow.appendChild(nameInput);
+
+        // Create input for message
+        const messageInput = document.createElement('textarea');
+        messageInput.rows = '3';
+        messageInput.placeholder = 'Enter your message';
+        messageInput.style.marginBottom = '5px'; // Style using style property
+        chatWindow.appendChild(messageInput);
+
+        // Create submit button
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'Submit';
+        submitButton.style.cursor = 'pointer'; // Style using style property
+        submitButton.addEventListener('click', () => {
+            sendMessage(nameInput.value, messageInput.value, recentMessages);
+            messageInput.value = ''; // Clear the message input after submitting
+        });
+        chatWindow.appendChild(submitButton);
+
+        // Add keyboard event listener to the message input
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevents adding a new line in the textarea
+                sendMessage(nameInput.value, messageInput.value, recentMessages);
+                messageInput.value = ''; // Clear the message input after submitting
+            }
+        });
+
+        // Append the chat window to the container
+        chatContainer.appendChild(chatWindow);
+        chatContainers.push(recentMessages); // Add the recent messages area to the array
+    }
+
+    // Function to send a message and display it in both chat windows
+    function sendMessage(name, message, container) {
+        if (name && message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${name}: ${message}`;
+
+            // Iterate through all chat windows and append the message
+            chatContainers.forEach(recentMessages => {
+                recentMessages.appendChild(messageElement.cloneNode(true));
+                // Scroll to the bottom to show the latest message
+                recentMessages.scrollTop = recentMessages.scrollHeight;
+            });
+        }
+    }
+
+    // Create a container for chat windows
+    const chatContainer = document.createElement('div');
+    chatContainer.style.position = 'fixed';
+    chatContainer.style.bottom = '0';
+    chatContainer.style.left = '0';
+    chatContainer.style.width = '100%';
+    document.body.appendChild(chatContainer);
+
+    // Create an array to store chat windows' recent messages areas
+    const chatContainers = [];
+
+    // Create two chat windows
+    createChatWindow();
+    createChatWindow();
+</script>
+
+</body>
+</html>
+I added the class name 'recent-messages' to the recent messages area to make it easier to select. Also, I made sure to push each recent messages area to the chatContainers array during the creation of each chat window. This should ensure that messages are displayed correctly in both chat windows.
+
+
+
+
+

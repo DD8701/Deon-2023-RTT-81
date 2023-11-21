@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <h1>Inserting Nodes</h1>
+    <ul>
+      <li id="useless">Nothing to see here</li>
+    </ul>
+    <script>
+      const ul = document.querySelector('ul');
+      const newElement = document.createElement('li');
+      newElement.textContent = "node.appendChild(): Add a node as the last child of a parent element";
+      ul.appendChild(newElement);
+      const anotherElement = document.createElement('li');
+      anotherElement.textContent = "node.insertBefore(): Insert a node into the parent element before a specified sibling node";
+      ul.insertBefore(anotherElement, newElement);
+      const uselessElement = document.querySelector('#useless');
+      const aDifferentElement = document.createElement('li');
+      aDifferentElement.textContent ="node.replaceChild(): Replace an existing node with a new node";
+      ul.replaceChild(aDifferentElement, uselessElemen);
+    </script>
+  </body>
+</html>

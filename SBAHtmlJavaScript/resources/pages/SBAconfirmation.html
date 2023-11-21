@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>confirmation</title>
+	<style>
+		body {
+			background-color: rgb(255, 241, 94);
+			text-align: center;
+		}
+
+		h1 {
+			color: #333;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 id="confirmationMessage"></h1>
+	<div id="confirmationGif"></div>
+	<a href="../pages/SBA.html">Go back to Registration Page</a>
+	<a href="../pages/SBAtables.html">Go back to Destination Selection Page</a>
+	</script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			displayConfirmationMessage();
+		});
+
+		function displayConfirmationMessage() {
+
+			const urlParams = new URLSearchParams(window.location.search);
+			const selectedDestination = urlParams.get('selectedDestination');
+
+			const confirmationMessageElement = document.getElementById('confirmationMessage');
+			const confirmationGifElement = document.getElementById('confirmationGif');
+
+			switch (selectedDestination) {
+				case 'legoland':
+				case 'kalahari':
+				case 'austins':
+					confirmationMessageElement.textContent = "Your adventure awaits :)";
+					confirmationGifElement.innerHTML = '<img src="../images/fist-pump-yeah.gif">'
+					break;
+				case '':
+					confirmationMessageElement.textContent = "Maybe next time :(";
+					confirmationGifElement.innerHTML = '<img src="../images/maybeNext.gif">'
+					break;
+			}
+
+		}
+	</script>
+
+	<footer style="background-color: #333; color: white; padding: 10px;">
+		<p>2023 Family Event Planner</p>
+	</footer>
+
+</body>
+
+</html>

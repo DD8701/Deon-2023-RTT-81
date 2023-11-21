@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <div>The elements of the returned NodeList are in document order, so you can select the first "li" element of a document like this: "document.getElementsByTagName("li")[0]".</div>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+    </ul>
+    <script>
+      let li = document.getElementsByTagName('li');
+      // will give an error
+      // let myArr = li.slice(1,3);
+      let myArry = Array.prototype.slice.call(li,1,3);
+      for (const myArryKey in myArry) {
+        console.log(myArry[myArryKey])
+      }
+    </script>
+  </body>
+</html>

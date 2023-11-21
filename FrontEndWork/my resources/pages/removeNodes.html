@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <h1>Removing Nodes</h1>
+    <ul>
+      <li>Now you see me</li>
+      <li>removeChild(): removes a child node from the DOM and returns the removed node.</li>
+      <li>remove(): removes the object from the tree it belongs to.</li>
+      <li id="useless">and now you don't</li>
+    </ul>
+    <script>
+      const ul = document.querySelector('ul');
+      ul.removeChild(ul.firstElementChild);
+      const uselessElement = document.querySelector('#useless');
+      uselessElement.remove();
+    </script>
+  </body>
+</html>

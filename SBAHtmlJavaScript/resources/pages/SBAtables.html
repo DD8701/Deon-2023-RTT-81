@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Family Fun Destinations</title>
+</head>
+
+<body>
+
+	<body style="background-color: rgb(255, 241, 94); text-align: center;">
+		<header>
+			<h1 style="text-align: center;">Family Fun Destinations</h1>
+		</header>
+
+		<main>
+			<p style="text-align: center;">Below you will find information about various family friendly destinations.
+			</p>
+
+
+		</main>
+
+
+		<table
+			style="width: 50%; border-collapse: collapse; margin: 20px auto; text-align: center; background-color: lightgray">
+			<tr>
+				<th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">
+					LegoLand California</th>
+				<th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">Tom
+					Foolery's, Kalahari</th>
+				<th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">
+					Austin's</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid #ddd; padding: 10px; text-align: center;">1 day from $79.99 per person</td>
+				<td style="border: 1px solid #ddd; padding: 10px; text-align: center;">42" and up $49.99 per person</td>
+				<td style="border: 1px solid #ddd; padding: 10px; text-align: center;">44" and up $42.95 per person</td>
+			</tr <tr>
+			<td style="border: 1px solid #ddd; padding: 10px; text-align: center;">2 days from $99.99 per person</td>
+			<td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Below 42" $29.99 per person</td>
+			<td style="border: 1px solid #ddd; padding: 10px; text-align: center;">Below 44" $34.99 per person</td>
+			</tr>
+		</table>
+		<section class="favorite-dropdown">
+			<label for="favoriteDestination">Based on the information above, which destination is your
+				favorite?:</label>
+			<select id="favoriteDestination" name="favoriteDestination">
+				<option value="">no selection</option>
+				<option value="legoland">LegoLand</option>
+				<option value="kalahari">Tom Foolery's</option>
+				<option value="austins">Austin's</option>
+			</select>
+
+			<form id="confirmationForm" action="../pages/SBAconfirmation.html" method="get">
+				<input type="hidden" id="selectedDestination" name="selectedDestination">
+				<button type="button" onclick="redirectToConfirmation()">Submit</button>
+			</form>
+			<a href="../pages/SBA.html">Go back to Registration Page</a>
+		</section>
+
+		<footer style="background-color: #333; color: white; padding: 10px;">
+			<p>2023 Family Event Planner</p>
+		</footer>
+
+		<script>
+			function redirectToConfirmation() {
+
+				let selectedDestination = document.getElementById("favoriteDestination").value;
+
+				document.getElementById("selectedDestination").value = selectedDestination;
+
+				document.getElementById("confirmationForm").submit();
+			}
+
+		</script>
+
+	</body>
+
+</html>

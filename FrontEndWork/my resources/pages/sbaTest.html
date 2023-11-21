@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Fun Destinations</title>
+</head>
+<body style="background-color: rgb(255, 241, 94); text-align: center;">
+
+    <header>
+        <h1 style="text-align: center;">Family Fun Destinations</h1>
+    </header>
+
+    <main>
+        <p style="text-align: center;">Below you will find information about various family-friendly destinations.</p>
+
+        <a href="../pages/SBA.html" style="display: block; margin: 20px auto; text-decoration: none; color: #333; font-weight: bold;">Go back to Registration Page</a>
+
+        <form onsubmit="redirectToCart(); return false;">
+            <table style="width: 70%; border-collapse: collapse; margin: 20px auto; text-align: center; background-color: lightgray;">
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">LegoLand California</th>
+                    <th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">Tom Foolery's, Kalahari</th>
+                    <th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">Austin's</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">
+                        <select id="legolandSelect" name="legoland">
+							<option value="">no selection</option>
+                            <option value="day">1 day - $79.99 per person</option>
+                            <option value="days">2 days - $99.99 per person</option>
+                        </select>
+                        <br>
+                        Quantity: <select id="legolandQuantity" name="legolandQuantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                            <option value="3">6</option>
+                        </select>
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">
+                        <select id="kalahariSelect" name="kalahari">
+							<option value="">no selection</option>
+                            <option value="42up">42" and up - $49.99 per person</option>
+                            <option value="below42">Below 42" - $29.99 per person</option>
+                        </select>
+                        <br>
+                        Quantity: <select id="kalahariQuantity" name="kalahariQuantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                            <option value="3">6</option>
+                            
+                        </select>
+                    </td>
+                    <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">
+                        <select id="austinsSelect" name="austins">
+							<option value="">no selection</option>
+                            <option value="44up">44" and up - $42.95 per person</option>
+                            <option value="below44">Below 44" - $34.99 per person</option>
+                        </select>
+                        <br>
+                        Quantity: <select id="austinsQuantity" name="austinsQuantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                            <option value="3">6</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Add to Cart">
+        </form>
+    </main>
+
+    <footer style="background-color: #333; color: white; padding: 10px;">
+        <p>2023 Family Event Planner</p>
+    </footer>
+
+    <script>
+        function redirectToCart() {
+            let legolandSelected = document.getElementById("legolandSelect").value;
+            let legolandQuantity = document.getElementById("legolandQuantity").value;
+
+            let kalahariSelected = document.getElementById("kalahariSelect").value;
+            let kalahariQuantity = document.getElementById("kalahariQuantity").value;
+
+            let austinsSelected = document.getElementById("austinsSelect").value;
+            let austinsQuantity = document.getElementById("austinsQuantity").value;
+
+            // Redirect to the cart page based on the selected destination and quantity
+            if (legolandSelected !== "") {
+                window.location.href = "../pages/cart.html?destination=legoland&quantity=" + legolandQuantity;
+            } else if (kalahariSelected !== "") {
+                window.location.href = "../pages/cart.html?destination=kalahari&quantity=" + kalahariQuantity;
+            } else if (austinsSelected !== "") {
+                window.location.href = "../pages/cart.html?destination=austins&quantity=" + austinsQuantity;
+            } else {
+                alert("Please select a destination and quantity before adding to the cart.");
+            }
+        }
+    </script>
+
+</body>
+</html>

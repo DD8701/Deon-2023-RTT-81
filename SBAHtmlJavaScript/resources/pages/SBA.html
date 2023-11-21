@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Email Prompt Landing Page</title>
+	<link rel="stylesheet" href="../css/SBA.css">
+	<script src="../js/SBA.js"></script>
+	<style>
+		.destination-images {
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+		}
+
+		.destination-image {
+			width: 200px;
+			height: auto;
+			margin: 10px;
+			border-radius: 8px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<header>
+		<h1>Welcome to The Family Event Planning Website</h1>
+	</header>
+	<section>
+		<p>Ready to start your next Family Adventure?... please register below to proceed.</p>
+		<form action="../pages/SBAtables.html" method="get" onsubmit="return validateRegistration()">
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$"required>
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required minlength="6">
+
+			<input type="submit" value="Register">
+		</form>
+	</section>
+
+	<div class="destination-images">
+		<img src="../images/destination1_LL.jpeg" class="destination-image">
+		<img src="../images/destination2_TF.jpg" class="destination-image">
+		<img src="../images/destination3_A.jpeg" class="destination-image">
+	</div>
+	<footer style="background-color: #333; color: white; padding: 10px;">
+		<p>2023 Family Event Planner</p>
+	</footer>
+</body>
+
+</html>

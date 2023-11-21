@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <p id="main">
+      <b id="selectorID">The Document method querySelector()</b> returns the first Element within the document that matches the specified selector, or group of selectors, <b class="selectorClass">this must be valid CSS syntax</b>, or a SyntaxError exception will occur. Elements can be described by <u>ID, tag name, or class</u>.
+    </p>
+    <p class="example">A paragraph with class="example".</p>
+    <script>
+      const selectorID = document.querySelector('#selectorID');
+      console.log(selectorID);
+      const selectorClass = document.querySelector('.selectorClass');
+      console.log(selectorClass);
+      const selectorTag = document.querySelector('u');
+      console.log(selectorTag);
+      console.log(document.querySelector("p.example"));
+    </script>
+  </body>
+</html>

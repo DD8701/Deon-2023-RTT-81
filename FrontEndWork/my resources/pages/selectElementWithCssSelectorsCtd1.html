@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+    <ul>
+      <li style="color: blue" class="myLi">More generally, elements can be selected based on attribute values.</li>
+      <li style="color: green" class="myLi"><b>Selectors can also specify document structure.</b></li>
+      <li style="color: blue" class="myLi"><u>These basic selectors can be combined.</u></li>
+      <li style="color: green" id="LastLI" class="myLi">You can select multiple elements or multiple sets of elements.</li>
+    </ul>
+    <script>
+      const q1 = document.querySelectorAll('li[style="color: blue"]');
+      for (const q1Key in q1) {
+        console.log(q1[q1Key])
+      }
+    </script>
+  </body>
+</html>
