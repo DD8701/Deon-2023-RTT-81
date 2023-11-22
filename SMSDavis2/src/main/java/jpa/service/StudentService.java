@@ -1,24 +1,17 @@
 package jpa.service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import jpa.dao.ConnectionDAO;
+import org.hibernate.query.Query;
 import jpa.dao.StudentDAO;
 import jpa.entitymodels.Course;
 import jpa.entitymodels.Student;
 import jpa.util.HibernateUtil;
 
-public class StudentService extends ConnectionDAO implements StudentDAO {
+public class StudentService extends HibernateUtil implements StudentDAO {
 
 	public void createStudentTable() {
 
@@ -70,190 +63,43 @@ public class StudentService extends ConnectionDAO implements StudentDAO {
 
 	@Override
 	public List<Student> getAllStudents() {
-
 		try {
-			Connection connection = ConnectionDAO.getConnection();
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM student");
-			List<Student> students = new ArrayList<>();
-
-			while (rs.next()) {
-				Student student = new Student();
-				student.setEmail(rs.getString("sEmail"));
-				student.setFullname(rs.getString("sName"));
-				student.setPassword(rs.getString("sPass"));
-				students.add(student);
-			}
+			Session session = HibernateUtil.getConnection();
+			Query<Student> query = session.createQuery("FROM Student", Student.class);
+			List<Student> students = query.getResultList();
+			session.close();
 			return students;
-
-		} catch (SQLException e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.printf("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-
 		}
+		return null;
+
+	}
+
+	@Override
+	public boolean validateStudent(String sEmail, String sPass) {
+		Student student = getStudentByEmail(sEmail);
+		if ((student != null) && (sPass.equals(student.getPassword())))
+			;
+		return true;
+	}
+
+	@Override
+	public void registerStudentToCourse(String sEmail, int cId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Course> getStudentCourses(String sEmail) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Student getStudentByEmail(String sEmail) {
-		try {
-			Connection connection = ConnectionDAO.getConnection();
-			String sqlQuery = "SELECT * FROM student WHERE sEmail = ?";
-
-			try (PreparedStatement ps = connection.prepareStatement(sqlQuery)) {
-				ps.setString(1, sEmail);
-				ResultSet rs = ps.executeQuery();
-
-				if (rs.next()) {
-					Student student = new Student();
-					student.setEmail(rs.getString("sEmail"));
-					student.setFullname(rs.getString("sName"));
-					student.setPassword(rs.getString("sPass"));
-
-					return student;
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.printf("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-		}
 		return null;
 	}
 
-	@Override
-	public boolean validateStudent(String sEmail, String sPass) {
-		try {
-			Connection connection = ConnectionDAO.getConnection();
-			String TypedQuery = "SELECT * FROM student WHERE sEmail = ? AND sPass = ?";
-
-			try (PreparedStatement ps = connection.prepareStatement(TypedQuery)) {
-				ps.setString(1, sEmail);
-				ps.setString(2, sPass);
-				ResultSet rs = ps.executeQuery();
-
-				return rs.next();
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.printf("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-		}
-		return false;
-	}
-
-	@Override
-	public void registerStudentToCourse(String sEmail, int cId) {
-		try {
-			Student student = getStudentByEmail(sEmail);
-			if(student != null) {
-				Course course = getCourseById(cId);
-				
-				if(course != null) {
-					if(!isStudentAttendingCourse(sEmail, cId)) {
-						List<Course> sCourses = student.getsCourses();
-						sCourses.add(course);
-						
-						updateStudent(student);
-						System.out.println("Registration successful!");
-						
-						}else {
-							System.out.println("You are already registered in that course!");
-						}
-				}else {
-					System.out.println("Course not found with ID: " + cId);
-				}
-			}else {
-				System.out.println("Student not found with email: " + sEmail);
-			}
-		
-		}catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error registering student to course.");
-		}
-		
-	}
-
-	private Course getCourseById(int cId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private void updateStudent(Student student) {
-		try {
-			Session session = HibernateUtil.getConnection();
-			Transaction t = session.beginTransaction();
-			session.update(student);
-			t.commit();
-			session.close();
-		}catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error updating student.");
-		}
-		
-	}
-
-	
-
-	@Override
-	public List<Course> getStudentCourses(String sEmail) {
-		try {
-			Session session = HibernateUtil.getConnection();
-			Transaction t = session.beginTransaction();
-			
-			Student student = (Student)session.createQuery("FROM student WHERE email = :email")
-			.setParameter("email", sEmail)
-			.uniqueResult();
-			
-			if(student != null) {
-				List<Course> studentCourses = student.getsCourses();
-				t.commit();
-				session.close();
-				return studentCourses;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error retrieving student courses.");
-		}
-
-		return null;
-	}
-
-public boolean isStudentAttendingCourse(String sEmail, int cId) {
-	try {
-		Student student = getStudentByEmail(sEmail);
-		
-		if(student != null) {
-			
-			Session session = HibernateUtil.getConnection();
-			Transaction t = session.beginTransaction();
-			boolean isStudentAttendingCourse = student.getsCourses().stream().anyMatch(course -> course.getId() == cId);
-			t.commit();
-			session.close();
-			
-			return isStudentAttendingCourse;
-			}
-	}catch (Exception e) {
-		e.printStackTrace();
-		System.out.println("Error checking if student is attending a course.");
-	}
-	return false;
 }
-}
-//	try {
-//		Session session = HibernateUtil.getConnection();
-//		Transaction t = session.beginTransaction();
-//		boolean isStudentAttendingCourse = student.getsCourses().stream().anyMatch(course -> course.getId()== cId);
-//		t.commit();
-//		session.close();
-//		return isStudentAttendingCourse;
-//	}catch (Exception e) {
-//		e.printStackTrace();
-//		System.out.println("Error checking if student is attending course.");
-//		}
-//	return false;
-//	}
-//
-//}
-

@@ -1,23 +1,17 @@
 package jpa.service;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
-import jpa.dao.ConnectionDAO;
+import org.hibernate.query.Query;
 import jpa.dao.CourseDAO;
 import jpa.entitymodels.Course;
 import jpa.util.HibernateUtil;
 
-
-public class CourseService implements CourseDAO {
+public class CourseService extends HibernateUtil implements CourseDAO {
 
 	public void createCourseTable() {
 
@@ -26,6 +20,7 @@ public class CourseService implements CourseDAO {
 		Transaction t = session.beginTransaction();
 
 		Course course = new Course();
+		session.save(course);
 		t.commit();
 		System.out.println("Course table created");
 		factory.close();
@@ -39,6 +34,7 @@ public class CourseService implements CourseDAO {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 
+		
 		Course c1 = new Course("English", "Anderea Scamaden");
 		Course c2 = new Course("Mathematics", "Eustace Niemetz");
 		Course c3 = new Course("Anatomy", "Reynolds Pastor");
@@ -49,17 +45,19 @@ public class CourseService implements CourseDAO {
 		Course c8 = new Course("Data Structures", "Carolan Stoller");
 		Course c9 = new Course("Politics", "Carmita De Maine");
 		Course c10 = new Course("Art", "Kingsly Doxsey");
-		session.save(c1);
-		session.save(c2);
-		session.save(c3);
-		session.save(c4);
-		session.save(c5);
-		session.save(c6);
-		session.save(c7);
-		session.save(c8);
-		session.save(c9);
-		session.save(c10);
+		List<Course> sCourses = new ArrayList();
+		session.persist(c1);
+		session.persist(c2);
+		session.persist(c3);
+		session.persist(c4);
+		session.persist(c5);
+		session.persist(c6);
+		session.persist(c7);
+		session.persist(c8);
+		session.persist(c9);
+		session.persist(c10);
 		
+
 		t.commit();
 		System.out.println("Courses created");
 		factory.close();
@@ -70,40 +68,17 @@ public class CourseService implements CourseDAO {
 	@Override
 	public List<Course> getAllCourses() {
 		try {
-			Connection connection = ConnectionDAO.getConnection();
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM course");
-			List<Course> courses = new ArrayList<>();
+			Session session = HibernateUtil.getConnection();
+			Query<Course> query = session.createQuery("FROM Course", Course.class);
+			List<Course> sCourses = query.getResultList();
+			session.close();
+			return sCourses;
 
-			while (rs.next()) {
-				Course course = new Course();
-				course.setId(rs.getInt("cId"));
-				course.setCourseName(rs.getString("cName"));
-				course.setInstructorName(rs.getString("cInstructorName"));
-				courses.add(course);
-			}
-			return courses;
-
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.printf("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		}
 		return null;
+
 	}
 
-
-	
-	
-//	public Course getCourseById(int cId) {
-//		try {
-//			Session session = HibernateUtil.getConnection();
-//			String sqlQuery = "SELECT c FROM Course c WHERE c.id = : cId";
-//			TypedQuery<Course> query = session.createQuery(sqlQuery, Course.class);
-//			return query.getSingleResult();
-//
-//		} catch (NoResultException e) {
-//			return null;
-//
-//		}
-//	}
 }
