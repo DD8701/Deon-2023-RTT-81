@@ -1,8 +1,10 @@
 package jpa.entitymodels;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -10,28 +12,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "student")
 public class Student {
-	
-	@Id //annotates that sEmail is PK
+
+	@Id // annotates that sEmail is PK
 	@Column(name = "sEmail", length = 50, nullable = false)
 	private String email;
-	
-	@Column(name ="sName", length = 50, nullable = false)
+
+	@Column(name = "sName", length = 50, nullable = false)
 	private String fullname;
-	
+
 	@Column(name = "sPass", length = 50, nullable = false)
 	private String password;
-	
-	@ManyToMany(targetEntity = Course.class)
+
+	@ManyToMany(targetEntity = Course.class, fetch = FetchType.EAGER)
 	private List<Course> sCourses;
-	
-	
-	public Student(){}
-	
+
+	public Student() {
+	}
+
 	public Student(String email, String fullname, String password) {
 		this.email = email;
 		this.fullname = fullname;
 		this.password = password;
-		
+
 	}
 
 	public Student(String email, String fullname, String password, List<Course> sCourses) {
@@ -66,6 +68,7 @@ public class Student {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public List<Course> getsCourses() {
 		return sCourses;
 	}
@@ -80,6 +83,4 @@ public class Student {
 				+ sCourses + "]";
 	}
 
-	
-	}
-
+}

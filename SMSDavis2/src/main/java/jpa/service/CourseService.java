@@ -1,6 +1,5 @@
 package jpa.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,7 +33,6 @@ public class CourseService extends HibernateUtil implements CourseDAO {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 
-		
 		Course c1 = new Course("English", "Anderea Scamaden");
 		Course c2 = new Course("Mathematics", "Eustace Niemetz");
 		Course c3 = new Course("Anatomy", "Reynolds Pastor");
@@ -45,7 +43,7 @@ public class CourseService extends HibernateUtil implements CourseDAO {
 		Course c8 = new Course("Data Structures", "Carolan Stoller");
 		Course c9 = new Course("Politics", "Carmita De Maine");
 		Course c10 = new Course("Art", "Kingsly Doxsey");
-		List<Course> sCourses = new ArrayList();
+
 		session.persist(c1);
 		session.persist(c2);
 		session.persist(c3);
@@ -56,7 +54,6 @@ public class CourseService extends HibernateUtil implements CourseDAO {
 		session.persist(c8);
 		session.persist(c9);
 		session.persist(c10);
-		
 
 		t.commit();
 		System.out.println("Courses created");
@@ -67,18 +64,15 @@ public class CourseService extends HibernateUtil implements CourseDAO {
 
 	@Override
 	public List<Course> getAllCourses() {
-		try {
-			Session session = HibernateUtil.getConnection();
+
+		try (Session session = HibernateUtil.getConnection()) {
 			Query<Course> query = session.createQuery("FROM Course", Course.class);
-			List<Course> sCourses = query.getResultList();
-			session.close();
-			return sCourses;
+			return query.getResultList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+
+			return null;
 		}
-		return null;
-
 	}
-
 }
